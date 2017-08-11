@@ -27,7 +27,22 @@ function buttons(res) {
     var $but = $('<button>').text('Previous').attr('id','prev').attr('data-id',res[0]._id);
     $buttons.prepend($but);
   } else {
-    if ()
+    if (res[0]._id === localStorage.getItem('first')) {
+      $('#prev').remove();
+    } else {
+      $('#prev').attr('data-id', res[0]._id);
+    }
   }
+  $('#next').attr('data-id', res[0]._id);
+  $('#post').attr('data-id', res[0]._id);
+}
 
+function comments(obj) {
+  $('#comment-holder').remove();
+  var $commentHolder = $('<div>').attr('id', 'comment-holder');
+  for (var i = 0; i < obj.length; i++) {
+    var $p = $('<p>').html('<span class="number">' + (i+1) + '</span> ' + obj[i].text + ' <a href="#" class="remove" data-id="' + obj[i]._id + '">X</a>');
+    $commentHolder.append($p);
+  }
+  $('#nyt-three>div.comments').append($commendHolder);
 }
