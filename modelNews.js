@@ -3,32 +3,37 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
-var News = new Schema({
+var NewSchema = new Schema({
 
-  articleTitle: {
+  title: {
     type: String,
     trim: true,
-    required: "This is your article Title."
+    unique: true
   },
 
-  articleImage: {
-
+  imgURL: {
+    type: String,
+    required: true
   },
 
-  articleLink: {
-
+  summary: {
+    type: String,
+    required: true
   },
 
-  articleSummary: {
-
+  articleURL: {
+    type: String,
+    required: true
   },
 
-  articleComments: {
+  comments: [{
+    text: {
+      type: String
+    }
+  }]
 
-  }
-  
 });
 
-//var User = mongoose.model("", New);
+var ScrapedData = mongoose.model('ScrapedDate', NewSchema);
 
-module.exports = User;
+module.exports = ScrapedData;
