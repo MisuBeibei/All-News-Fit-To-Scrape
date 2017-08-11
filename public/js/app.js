@@ -14,3 +14,20 @@ $(document).on('click', '#prev', function() {
   var id = $(this).attr('data-id');
   $.get(baseURL + "/prev/" + id, buttons);
 });
+
+function buttons(res) {
+  $('#picture>img').attr('src', res[0].imgURL);
+  $('#content>h2').text(res[0].title);
+  $('#content>p').text(res[0].summary);
+  $('a.articleURL').attr('href', res[0].articleURL);
+
+  comments(res[0].comments);
+  $buttons = $('#buttons');
+  if ($buttons.children().length === 1) {
+    var $but = $('<button>').text('Previous').attr('id','prev').attr('data-id',res[0]._id);
+    $buttons.prepend($but);
+  } else {
+    if ()
+  }
+
+}
