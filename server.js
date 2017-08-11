@@ -36,24 +36,32 @@ var ScrapedData = require('./modelNews')
 request("http://www.nytimes.com/trending/", function(error, response, html) {
 
   var $ = cheerio.load(html);
-
-  var results = [];
-
-  // Select each element in the HTML body from which you want information.
-  // NOTE: Cheerio selectors function similarly to jQuery's selectors,
-  // but be sure to visit the package's npm page to see how it works
-  $("h2.story-heading").each(function(i, element) {
-
-    var link = $(element).children().attr("href");
-    var title = $(element).children().text();
-
-    // Save these results in an object that we'll push into the results array we defined earlier
-    results.push({
+  // For each element with a "new-content-block" class
+  $('div.new-content-block').each(function(i, element) {
+    // Save div and tag
+    var $a = $(this).children('a');
+    var $div = $(this).children('div');
+    // Save article url
+    var articleURL = $a.attr('href');
+    // Save img url of each element
+    var imgURL = $a.children('img').attr('src');
+    // Save title
+    var title = $div.children('h4').text();
+    // Save summary
+    var summary = $div.children('p').text();
+    // Create mongoose model
+    var scrapedData = new ScrapedData({
       title: title,
-      link: link
+      imgURL: imgURL,
+      summary: summary,
+      articleURL: articleURL
+    });
+    // Save data
+    scrapedData.save(function(err) {
+      if (err) {
+        //console.log(err);
+      }
+      //console.log('Saved');
     });
   });
-
-  // Log the results once you've looped through each of the elements found with cheerio
-  console.log(results);
 });
