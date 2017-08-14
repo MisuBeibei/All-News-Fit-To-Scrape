@@ -62,5 +62,5 @@ $(document).on('click', '#post', function() {
 
 // create a click that will remove
 $(document).on('click', '.remove', function() {
-
+  var id = $('#post').attr('');
 })
