@@ -1,3 +1,4 @@
+
 // Save as URL of website
 var baseURL = window.location.origin;
 // Save to local storage, call it 'first'
@@ -63,9 +64,35 @@ $(document).on('click', '#post', function() {
 // create a click that will remove
 $(document).on('click', '.remove', function() {
   var id = $('#post').attr('data-id');
-  var removeId = $(this).attr('data-id');
-  $.post(baseURL + "/remove/" + id, {id: removeId}, function() {
+  var removeID = $(this).attr('data-id');
+  $.post(baseURL + "/remove/" + id, {id: removeID}, function() {
     comments(res);
   });
   return false;
 });
+
+// $(document).ready(function() {
+//
+//   $(".button-collapse").sideNav();
+//
+//   // when clicked, these are set
+//   $(".add-comment-button").on("click", function() {
+//     var articleId = $(this).data("id");
+//     var baseURL = window.location.origin;
+//     var formName = "form-add-" + articleId;
+//     var form = $("#" + formName);
+//
+//     $.ajax({
+//       url:
+//       type:
+//       data:
+//     }).done(function() {
+//       location.reload();
+//     });
+//     return false;
+//   })
+//
+//
+//
+//
+// })

@@ -22,7 +22,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 
 var mongoose = require('mongoose');
-var ObjectId = require('mongojs').ObjectID;
+var ObjectId = require('mongodb').ObjectID;
 
 mongoose.connect('mongodb://localhost/model-news-scraper');
 var db = mongoose.connection;
