@@ -15,6 +15,7 @@ $(document).on('click', '#prev', function() {
   $.get(baseURL + "/prev/" + id, buttons);
 });
 
+// place buttons and other contents such as image, titles, summaries, and URL to divs
 function buttons(res) {
   $('#picture>img').attr('src', res[0].imgURL);
   $('#content>h2').text(res[0].title);
@@ -37,6 +38,7 @@ function buttons(res) {
   $('#post').attr('data-id', res[0]._id);
 }
 
+// clear comment holder, then for the length of obj append a comment holder
 function comments(obj) {
   $('#comment-holder').remove();
   var $commentHolder = $('<div>').attr('id', 'comment-holder');
@@ -47,6 +49,7 @@ function comments(obj) {
   $('#nyt-three>div.comments').append($commendHolder);
 }
 
+// when clicked, post comments and comment contents into comment div
 $(document).on('click', '#post', function() {
   var id = $(this).attr('data-id');
   $comment = $("#comment");
@@ -56,3 +59,8 @@ $(document).on('click', '#post', function() {
     comments(res);
   });
 });
+
+// create a click that will remove
+$(document).on('click', '.remove', function() {
+
+})
