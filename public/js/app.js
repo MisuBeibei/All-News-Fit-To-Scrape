@@ -67,5 +67,5 @@ $(document).on('click', '.remove', function() {
   $.post(baseURL + "/remove/" + id, {id: removeId}, function() {
     comments(res);
   });
-  //return false;
+  return false;
 });

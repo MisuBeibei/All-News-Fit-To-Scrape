@@ -7,7 +7,7 @@ var NewSchema = new Schema({
 
   title: {
     type: String,
-    trim: true,
+    required: true,
     unique: true
   },
 
@@ -34,6 +34,6 @@ var NewSchema = new Schema({
 
 });
 
-var ScrapedData = mongoose.model('ScrapedDate', NewSchema);
+var ScrapedData = mongoose.model('ScrapedData', NewSchema);
 
 module.exports = ScrapedData;
