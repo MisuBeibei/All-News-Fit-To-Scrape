@@ -19,4 +19,11 @@ Steps for use:
 
 Note: You can also remove articles from this application using the "Delete This Article" button located under every saved article within the "Saved" tab.
 
-Enjoy!!!
+
+Scraper fish had a great day.
+
+Be like scraper fish.
+
+Use this app for all of your trending news.
+
+Enjoy!
