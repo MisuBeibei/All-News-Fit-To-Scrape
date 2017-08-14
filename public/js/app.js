@@ -46,3 +46,13 @@ function comments(obj) {
   }
   $('#nyt-three>div.comments').append($commendHolder);
 }
+
+$(document).on('click', '#post', function() {
+  var id = $(this).attr('data-id');
+  $comment = $("#comment");
+  var comment = $comment.val().trim();
+  $comment.val('');
+  $.post(baseURL + "/comment/" + id, {comment: comment}, function(res) {
+    comments(res);
+  });
+});
