@@ -99,3 +99,48 @@ router.get("/notes/:id", function(req, res) {
     res.send(doc);
   });
 });
+
+
+// grab an article by ObjectId
+router.get("/articles/:id", function(req, res) {
+  // console.log("ID is getting read" + req.params.id);
+  // finds matching id from db
+  Article.findOne({"_id": req.params.id})
+  .populate('notes')
+  .exec(function(err, doc) {
+    if (err) {
+      console.log("Not able to find article and get notes.");
+    }
+    else {
+      console.log("We are getting article and maybe notes? " + doc);
+      res.json(doc);
+    }
+  });
+});
+
+
+// create or replace existing notes
+router.post("/articles/:id", function(req, res) {
+  // create new note then pass req.body for the entry
+  var newNote = new Note(req.body);
+  newNote.save(function(error, doc) {
+    if (error) {
+      console.log(error);
+    }
+    else {
+      Article.findOneAndUpdate({ "_id": req.params.id }, {$push: {notes: doc._id}}, {new: true, upsert: true})
+      .populate('notes')
+      .exec(function (err, doc) {
+        if (err) {
+          console.log("Cannot find article.");
+        } else {
+          console.log("On note save we are getting notes? " + doc.notes);
+          res.send(doc);
+        }
+      });
+    }
+  });
+});
+
+// Export routes for server.js
+module.exports = router;
